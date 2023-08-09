@@ -1,0 +1,229 @@
+<style>
+    .custom-a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .custom-a:hover {
+        text-decoration: none;
+        color: rgb(212, 212, 212);
+    }
+
+    .bold-link {
+        font-weight: bold;
+    }
+</style>
+
+<html>
+    <head>
+        <title>LeoChat - Impostazioni account</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    </head>
+    <body style="background-color: #36393F;">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-shadow">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/myDashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/chats">Le mie chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/account">Account</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <br>
+        <!--div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card" style="background-color: rgb(32, 31, 31);">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <h1 style="color: white;">Impostazioni account</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div!-->
+        <div class="d-flex justify-content-center">
+            <div class="row">
+                <div class="col">
+                    <div class="card mx-auto" style="background-color: rgb(32, 31, 31); width: 300px;">
+                        <div class="card-body">
+                            <a href="/account" class="custom-a" onclick="boldOnClick(this)" id="accountLink">Generale</a>
+                            <hr style="color: white;">
+                            <a href="/account/security" class="custom-a" onclick="boldOnClick(this)" id="securityLink">Privacy e Sicurezza</a>
+                            <hr style="color: white;">
+                            <a href="/account/friends" class="custom-a" onclick="boldOnClick(this)">Amici</a>
+                            <hr style="color: white;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="background-color: rgb(32, 31, 31); width: 800px;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <h1 style="color: white;">Sicurezza dell'account</h1>
+                                    <hr style="color: white;">
+                                    <div class="card" style="background-color: rgb(51, 50, 50); width: 765px;">
+                                        <div class="card-body">
+                                            <h3 style="color: white;">Password e verifica</h3>
+                                            <div class="col-md-8 d-flex align-items-center">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pwChange">Cambia password</button>
+                                                {{#if messageValue}}
+                                                    <p style="color: lime; margin-left: 10px; margin-top: 15px;"><span class="material-symbols-outlined" style="color: lime; font-size: 15px;">done</span>{{message}}</p>
+                                                {{/if}}
+                                                {{#if errorMessage}}
+                                                    <p style="color: red; margin-left: 10px; margin-top: 15px;"><span class="material-symbols-outlined" style="color: red; font-size: 15px;">close</span>{{message}}</p>
+                                                {{/if}}
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <p style="color: rgb(153, 153, 153); font-weight: bold; font-size: 13px;">VERIFICA IN DUE PASSAGGI</p>
+                                            <span style="color: rgb(160, 160, 160)">
+                                                Proteggi il tuo account con la verifica in due passaggi.<br>
+                                                Ogni volta che eseguirai l'accesso ti verrà inviato un codice via e-mail che dovrai inserire per completare l'autenticazione
+                                                nel tuo account.
+                                            </span>
+                                            <br>
+                                            <br>
+                                            <div class="col-md-9 d-flex align-items-center">
+                                                {{#if two_step}}
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#disable2FA">Disattiva la verifica in due passaggi</button>
+                                                {{else}}
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#enable2FA">Attiva verifica in due passaggi</button>
+                                                {{/if}}
+
+                                                {{#if messageValue2FA}}
+                                                    <p style="color: lime; margin-left: 10px; margin-top: 15px;"><span class="material-symbols-outlined" style="color: lime; font-size: 15px;">done</span>{{message}}</p>
+                                                {{/if}}
+                                                {{#if errorMessage2FA}}
+                                                    <p style="color: red; margin-left: 10px; margin-top: 15px;"><span class="material-symbols-outlined" style="color: red; font-size: 15px;">close</span>{{message}}</p>
+                                                {{/if}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+        <!--CHANGE PASSWORD MODAL!-->
+        <div class="modal fade" id="pwChange" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content text-light" style="background-color: rgb(49, 49, 49)">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="changePasswordModalTitle">Modifica la password</h5>
+                        <span type="button" data-dismiss="modal" aria-label="Close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row justify-content-center">
+                            <div class="col-auto">
+                                <form action="/account/actions/changePassword" method="POST">
+                                    <p style="color: rgb(153, 153, 153); font-weight: bold; font-size: 13px;">PASSWORD ATTUALE</p>
+                                    <input type="password" id="oldPassword" name="oldPassword" class="form-control text-light" style="background-color: #1d1d1d; border-color: #1d1d1d; width: 400px;" required="true">
+                                    <br>
+                                    <p style="color: rgb(153, 153, 153); font-weight: bold; font-size: 13px;">NUOVA PASSWORD</p>
+                                    <input type="password" id="newPassword" name="newPassword" class="form-control text-light" style="background-color: #1d1d1d; border-color: #1d1d1d; width: 400px;" required="true">
+                                    <br>
+                                    <p style="color: rgb(153, 153, 153); font-weight: bold; font-size: 13px;">CONFERMA NUOVA PASSWORD</p>
+                                    <input type="password" id="confirmNewPassword" name="confirmNewPassword" class="form-control text-light" style="background-color: #1d1d1d; border-color: #1d1d1d; width: 400px;" required="true">
+                                    <br>
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary ml-auto">Applica</button>
+                                    </div>
+                                </form>                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--2FA MODAL!-->
+        <div class="modal fade" id="enable2FA" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content text-light" style="background-color: rgb(49, 49, 49)">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="enable2FAModalTitle">Attiva la verifica in due passaggi</h5>
+                        <span type="button" data-dismiss="modal" aria-label="Close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row justify-content-center">
+                            <div class="col-auto">
+                                <form action="/account/actions/enable2FA" method="POST">
+                                    <p style="color: rgb(153, 153, 153); font-weight: bold; font-size: 13px;">PASSWORD ATTUALE</p>
+                                    <input type="password" id="password" name="password" class="form-control text-light" style="background-color: #1d1d1d; border-color: #1d1d1d; width: 400px;" required="true">
+                                    <br>
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary ml-auto">Continua</button>
+                                    </div>
+                                </form>                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--DISABLE 2FA MODAL!-->
+        <div class="modal fade" id="disable2FA" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content text-light" style="background-color: rgb(49, 49, 49)">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="disable2FAModalTitle">Disattiva la verifica in due passaggi</h5>
+                        <span type="button" data-dismiss="modal" aria-label="Close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row justify-content-center">
+                            <div class="col-auto">
+                                <form action="/account/actions/disable2FA" method="POST">
+                                    <p style="color: rgb(153, 153, 153); font-weight: bold; font-size: 13px;">PASSWORD ATTUALE</p>
+                                    <input type="password" id="password" name="password" class="form-control text-light" style="background-color: #1d1d1d; border-color: #1d1d1d; width: 400px;" required="true">
+                                    <br>
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-danger ml-auto">Disattiva</button>
+                                    </div>
+                                </form>                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var currentUrl = window.location.href;
+            var splittedUrl = currentUrl.split('/');
+            var link = splittedUrl[splittedUrl.length - 1];
+            var securityLink = document.getElementById('securityLink');
+            console.log(link);
+            
+            if (link === 'security') {
+                securityLink.classList.add('bold-link');
+            }
+        </script>
+    </body>
+</html>

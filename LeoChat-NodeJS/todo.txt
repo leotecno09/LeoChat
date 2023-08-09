@@ -1,0 +1,6 @@
+prossimamente da fare:
+    
+    1) finire il sistema per creare le chat
+    2) collegare il MongoDB per salvare utenti registrati nelle chat e amici
+    3) far funzionare correttamente le chat
+    4) gestione account

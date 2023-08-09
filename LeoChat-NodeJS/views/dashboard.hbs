@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<style>
+  .navbar-shadow {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0,1);
+  }
+</style>
+<html>
+  <head>
+    <title>LeoChat - Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  </head>
+  <body style="background-color: #36393F;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-shadow">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/myDashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/chats">Le mie chat</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/account">Account</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card" style="background-color: rgb(32, 31, 31);">
+            <div class="card-body">
+                <h1 style="color: white;">Ciao {{username}}!</h1>
+              {{#if firstJoin}}
+                <h3 style="color: white;">Benvenuto nel tuo account LeoChat!</h3> <!--Da rivedere la funzione firstjoin!-->
+              {{else}}
+                <h5 style="color: rgb(82, 82, 82);">Ecco cosa è accaduto quando tu non c'eri...</h5>
+                <br>
+                {{#if messages}}
+                  {{#each messages}}
+                    <div class="card" style="background-color: rgb(68, 68, 68);">
+                      <div class="card-header" style="color: white;">
+                        {{messageTitle}}&nbsp;(Inviato il&nbsp{{curDate}})
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title" style="color: white;">Messaggio inviato da&nbsp;{{messageSender}}</h5>
+                        <p class="card-text" style="color: white;">{{messageText}}</p>
+                        {{#if btnLink}}
+                            <a href="{{btnLink}}" class="btn btn-primary">{{btnTitle}}</a>
+                        {{/if}}
+                      </div>
+                    </div>
+                    <br>
+                  {{/each}}
+                {{else}}
+                  <h3 style="color: white;">Purtroppo non è accaduto niente... che peccato!</h5>
+                {{/if}}
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
